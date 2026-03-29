@@ -60,7 +60,8 @@ else:
     
     if goal_reached:
         st.success("Diagnosis Complete")
-        st.subheader(f"Likely Diagnosis: {diagnosis}")
+        probability = st.session_state.candidates[diagnosis]['confidence'] * 100
+        st.subheader(f"Likely Diagnosis: {diagnosis} ({probability:.1f}%)")
         
         info = KNOWLEDGE_BASE[diagnosis]
         st.write(f"**Next Steps:** {info['Next Steps']}")
@@ -75,7 +76,8 @@ else:
         
         if st.session_state.candidates:
             top_candidate = list(st.session_state.candidates.keys())[0]
-            st.subheader(f"Best Guess: {top_candidate}")
+            probability = st.session_state.candidates[top_candidate]['confidence'] * 100
+            st.subheader(f"Best Guess: {top_candidate} ({probability:.1f}%)")
             
             info = KNOWLEDGE_BASE[top_candidate]
             st.write(f"**Next Steps:** {info['Next Steps']}")
@@ -121,7 +123,8 @@ else:
             
             if st.session_state.candidates:
                 top_candidate = list(st.session_state.candidates.keys())[0]
-                st.subheader(f"Best Guess: {top_candidate}")
+                probability = st.session_state.candidates[top_candidate]['confidence'] * 100
+                st.subheader(f"Best Guess: {top_candidate} ({probability:.1f}%)")
                 
                 info = KNOWLEDGE_BASE[top_candidate]
                 st.write(f"**Next Steps:** {info['Next Steps']}")
