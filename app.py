@@ -31,10 +31,10 @@ st.set_page_config(page_title="Symptom Checker", page_icon="🩺")
 st.title("🩺 Symptom Checker")
 
 # Educational Disclaimer
-st.warning("⚠️ **Educational Disclaimer:** This application is for educational purposes only. It does not provide medical advice. Consult a healthcare professional for actual medical concerns.")
+
 
 if not st.session_state.started:
-    st.header("Step 1: Your Symptoms")
+    st.header("Your Symptoms")
     st.write("Select the symptoms you are currently experiencing.")
     
     all_symptoms = engine.extract_all_symptoms()
@@ -53,7 +53,7 @@ if not st.session_state.started:
             st.rerun()
 else:
     # We are in the diagnostic process
-    st.header("Step 2: Additional Questions")
+    st.header("Additional Questions")
     
     # Check if goal is reached
     goal_reached, diagnosis = engine.is_goal_reached(st.session_state.candidates)
